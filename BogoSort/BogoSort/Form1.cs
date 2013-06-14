@@ -38,16 +38,31 @@ namespace BogoSort
                 array[i] = Convert.ToInt32(s);//casts the objects to integers.
             }
             lbxSorted.Items.Clear();//clears the sorted listbox.
+
             //Sort using bogo sort
             Random rand = new Random();
             bool perfectMatch=false;
+            Random rng = new Random();   // i.e., java.util.Random.
             do
-            {
-                
+            {              
+                //attempt sattolo's algorithm (shuffles the elements in an array.).                            
+                int n = array.Count();
+
+                while (n > 1)
+                {
+                    int k = rng.Next(n);  // 0 <= k < n.
+                    n--;      // n is now the last pertinent index;
+                    // swap array[n] with array[k] (does nothing if k == n).
+                    int temp = array[n];
+                    array[n] = array[k];
+                    array[k] = temp;
+                }
+                //
                 perfectMatch = true;
             }
             while (perfectMatch != true);
             //
+            lbxSorted.Items.Clear();//clears the sorted listbox.
             foreach (int item in array)//adds the elements of the array one for one to the sorted listbox.
             {
                 lbxSorted.Items.Add(item);//adds a single item to the listbox.
