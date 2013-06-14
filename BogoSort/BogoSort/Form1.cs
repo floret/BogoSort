@@ -36,56 +36,63 @@ namespace BogoSort
             {
                 object s = lbxUnsorted.Items[i];//sets s to the items in the unsorted listbox.
                 array[i] = Convert.ToInt32(s);//casts the objects to integers.
-            }
-            lbxSorted.Items.Clear();//clears the sorted listbox.
-
+            }            
             //Sort using bogo sort
             Random rand = new Random();
             bool perfectMatch=false;
             Random rng = new Random();   // i.e., java.util.Random.
-            do
-            {              
-                //attempt sattolo's algorithm (shuffles the elements in an array.).                            
-                int n = array.Count();
+            int o = 0;
 
-                while (n > 1)
-                {
-                    int k = rng.Next(n);  // 0 <= k < n.
-                    n--;      // n is now the last pertinent index;
-                    // swap array[n] with array[k] (does nothing if k == n).
-                    int temp = array[n];
-                    array[n] = array[k];
-                    array[k] = temp;
-                }
-                //
-                perfectMatch = true;
-            }
-            while (perfectMatch != true);
-            //
-            lbxSorted.Items.Clear();//clears the sorted listbox.
-            foreach (int item in array)//adds the elements of the array one for one to the sorted listbox.
+           
+            //attempt sattolo's algorithm (shuffles the elements in an array.).     
+            int n = array.Count();
+            while (n > 1)
             {
-                lbxSorted.Items.Add(item);//adds a single item to the listbox.
+                int k = rng.Next(n);
+                n--;      // n is now the last pertinent index;
+                // swap array[n] with array[k] (does nothing if k == n).
+                int temp = array[n];
+                array[n] = array[k];
+                array[k] = temp;
             }
+            do
+            {
+                o = 2;                   
+                //end sattalo
+                int numLength = array.Length;
+                //see if the array is sorted.
+                for (int i = 1; (i <= (numLength - 1)); i++)//!these for loops are broken
+                {
+                    for (int j = 0; j < (numLength - 1); j++)
+                    {
+                        if (array[j + 1] > array[j])//if the element after the current element is bigger than the current element.
+                        {
+                            
+                        }
+                        else
+                        {
+                            o = 1;
+                            break;
+                        }
+                    }
+                    //if (array[i-1] > array[i])//if the element after the current element is bigger than the current element.
+                    //{
+                    //    o = 1;
+                    //}     
+                }
+                if (o == 2)
+                { perfectMatch = true; }
+            }
+            while (perfectMatch == false);
+            //
+            if (perfectMatch == true)
+            {
+                lbxSorted.Items.Clear();//clears the sorted listbox.
+                foreach (int item in array)//adds the elements of the array one for one to the sorted listbox.
+                {
+                    lbxSorted.Items.Add(item);//adds a single item to the listbox.
+                }
+            }            
         }
     }
 }
- //           //sorting using bubble sort algorithim.
- //           bool flag = true;//boolean value that indicates that the numbers are swapped or not.
- //           int temp;
- //           int numLength = array.Length;
-
- //           for (int i = 1; (i <= (numLength - 1)) && flag; i++)//
- //           {
- //               flag = false;//sets the swapped indicator to false.
- //               for (int j = 0; j < (numLength - 1); j++)
- //               {
- //                   if (array[j + 1] > array[j])//if the element after the current element is bigger than the current element.
- //                   {
- //                       temp = array[j];            //Swaps
- //                       array[j] = array[j + 1];    //the 
- //                       array[j + 1] = temp;        //elements
- //                       flag = true;//sets the swapped indicator to true.
- //                   }
- //               }
- //           }
