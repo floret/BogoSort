@@ -39,31 +39,27 @@ namespace BogoSort
             }            
             //Sort using bogo sort
             Random rand = new Random();
-            bool perfectMatch=false;
-            Random rng = new Random();   // i.e., java.util.Random.
-            int o = 0;
-
-           
+            bool perfectMatch=false;//flag for when the correct order is obtained.
+            int o = 0;//flag for when to use flag.
             //attempt sattolo's algorithm (shuffles the elements in an array.).     
-            
-            
             do
             {
-                int n = array.Count();
+                int n = array.Count();//n is the amount of elements in the array.
                 while (n > 1)
                 {
-                    int k = rng.Next(n);
+                    int k = rand.Next(n);//k is the next random value generated.
                     n--;      // n is now the last pertinent index;
                     // swap array[n] with array[k] (does nothing if k == n).
                     int temp = array[n];
                     array[n] = array[k];
                     array[k] = temp;
                 }
-                o = 2;                   
-                //end sattalo
+                o = 2;     //reset flag                              
                 int numLength = array.Length;
                 //see if the array is sorted.
-                for (int i = 1; (i <= (numLength - 1)); i++)//!these for loops are broken
+                //
+                //walks through the array until it finds elements that aren't in the right sequence and throws a flag, or it find nothing and does nothing.
+                for (int i = 1; (i <= (numLength - 1)); i++)
                 {
                     for (int j = 0; j < (numLength - 1); j++)
                     {
@@ -76,14 +72,10 @@ namespace BogoSort
                             o = 1;
                             break;
                         }
-                    }
-                    //if (array[i-1] > array[i])//if the element after the current element is bigger than the current element.
-                    //{
-                    //    o = 1;
-                    //}     
+                    }   
                 }
-                if (o == 2)
-                { perfectMatch = true; }
+                if (o == 2)//if flag doesn't get raised
+                { perfectMatch = true; }//raise this flag if the right sequence is found.
             }
             while (perfectMatch == false);
             //
