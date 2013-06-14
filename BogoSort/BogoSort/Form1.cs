@@ -45,18 +45,20 @@ namespace BogoSort
 
            
             //attempt sattolo's algorithm (shuffles the elements in an array.).     
-            int n = array.Count();
-            while (n > 1)
-            {
-                int k = rng.Next(n);
-                n--;      // n is now the last pertinent index;
-                // swap array[n] with array[k] (does nothing if k == n).
-                int temp = array[n];
-                array[n] = array[k];
-                array[k] = temp;
-            }
+            
+            
             do
             {
+                int n = array.Count();
+                while (n > 1)
+                {
+                    int k = rng.Next(n);
+                    n--;      // n is now the last pertinent index;
+                    // swap array[n] with array[k] (does nothing if k == n).
+                    int temp = array[n];
+                    array[n] = array[k];
+                    array[k] = temp;
+                }
                 o = 2;                   
                 //end sattalo
                 int numLength = array.Length;
