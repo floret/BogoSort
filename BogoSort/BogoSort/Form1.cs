@@ -38,7 +38,16 @@ namespace BogoSort
                 array[i] = Convert.ToInt32(s);//casts the objects to integers.
             }
             lbxSorted.Items.Clear();//clears the sorted listbox.
-           //Sort using bogo sort
+            //Sort using bogo sort
+            Random rand = new Random();
+            bool perfectMatch=false;
+            do
+            {
+                
+                perfectMatch = true;
+            }
+            while (perfectMatch != true);
+            //
             foreach (int item in array)//adds the elements of the array one for one to the sorted listbox.
             {
                 lbxSorted.Items.Add(item);//adds a single item to the listbox.
